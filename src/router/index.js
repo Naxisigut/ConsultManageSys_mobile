@@ -37,15 +37,24 @@ export const constantRoutes = [
     redirect: '/intro',
     children:[
       {
+        name: 'intro',
         path: '/intro',
         component: () => import('@/views/introPage'),
       },
       {
+        name: 'questionNaire',
         path: '/questionNaire',
-        // component: () => import('@/views/404'),
+        component: () => import('@/views/questionNaire'),
         // hidden: true
       },
       {
+        name: 'questionNaireNext',
+        path: '/questionNaireNext',
+        component: () => import('@/views/questionNaireNext'),
+        // hidden: true
+      },
+      {
+        name: 'over',
         path: '/over',
         component: () => import('@/views/overPage'),
       }

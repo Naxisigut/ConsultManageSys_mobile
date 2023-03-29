@@ -20,7 +20,7 @@
     </div>
 
     <div class="btns">
-      <button class="primary only">开始测评</button>
+      <button class="primary only" @click="toQuestion">开始测评</button>
     </div>
   </div>
 </template>
@@ -36,6 +36,9 @@ export default {
     }
   },
   methods:{
+    toQuestion(){
+      this.$router.push({name: 'questionNaire'})
+    }
   }
 }
 </script>

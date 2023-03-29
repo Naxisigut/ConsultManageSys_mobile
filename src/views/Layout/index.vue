@@ -1,7 +1,7 @@
 <template>
   <div class="layout">
     <div class="top">
-      {{ ToolName }}
+      {{ toolName }}
     </div>
     <div class="main">
       <router-view />
@@ -10,21 +10,27 @@
 </template>
 
 <script>
-import {tool_get} from '@/api/index.js';
+// import {tool_get} from '@/api/index.js';
 export default {
   name: 'layout-wrapper',
   mounted(){
-    // this.getTool()
+    this.getTool()
   },
   data(){
     return {
-      ToolName: '企业文化测评'
+    }
+  },
+  computed:{
+    toolName(){
+      return this.$store.getters.toolName
     }
   },
   methods:{
     async getTool(){
-      const res = await tool_get({id: this.$route.query.id})
-      console.log(res);
+      this.$store.commit('Set_ID', this.$route.query.id)
+      this.$store.dispatch('getTool', this.$route.query.id)
+      // this.$store.commit('Set_ID', '1')
+      // this.$store.dispatch('getTool', '1')
     }
   }
 }
