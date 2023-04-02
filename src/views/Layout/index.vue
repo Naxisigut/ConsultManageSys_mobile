@@ -1,8 +1,8 @@
 <template>
   <div class="layout">
-    <div class="top">
+    <!-- <div class="top">
       {{ toolName }}
-    </div>
+    </div> -->
     <div class="main">
       <router-view />
     </div>
@@ -29,8 +29,6 @@ export default {
     async getTool(){
       this.$store.commit('Set_ID', this.$route.query.id)
       this.$store.dispatch('getTool', this.$route.query.id)
-      // this.$store.commit('Set_ID', '1')
-      // this.$store.dispatch('getTool', '1')
     }
   }
 }

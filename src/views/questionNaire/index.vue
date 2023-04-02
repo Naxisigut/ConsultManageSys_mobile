@@ -62,14 +62,14 @@ export default {
 
 <style lang="scss" scoped>
 .question-page {
-  height: calc(100vh - 50px);
-  display: flex;
-  flex-direction: column;
+  // height: calc(100vh - 50px);
+  // display: flex;
+  // flex-direction: column;
   padding: 10px;
   // justify-content: space-between;
   .content {
-    flex: 1;
-    overflow: auto;
+    // flex: 1;
+    // overflow: auto;
   }
   .btns {
     height: 40px;
@@ -123,6 +123,8 @@ export default {
     }
   }
   .question {
+    border-radius: 2px;
+    overflow: hidden;
     background: #fff;
     margin-bottom: 20px;
     &-title {

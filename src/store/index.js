@@ -22,14 +22,9 @@ export const store = new Vuex.Store({
   },
   actions:{
     async getTool({commit}, id){
-      // console.log('context', context);
       const res = await tool_get({id})
       commit('Set_Tool_Name', res.data.toolName)
 
-      // const questions = res.data.question.forEach((item) => {
-      //    Vue.$set(item, 'nowScore', [0, 0, 0, 0])
-      //    Vue.$set(item, 'futureScore', [0, 0, 0, 0])
-      // })
       const questions = res.data.question.map((item) => {
          return {
           ...item, 
@@ -53,6 +48,9 @@ export const store = new Vuex.Store({
         now,
         future
       }
+    },
+    toolName(state){
+      return state.toolName
     }
   }
 })

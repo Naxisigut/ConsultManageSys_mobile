@@ -24,7 +24,7 @@ export default {
 
 <style lang="scss" scoped>
 .over-page {
-  height: calc(100vh - 50px);
+  height: 100vh;
   .content {
     display: flex;
     align-items: center;

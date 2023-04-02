@@ -18,8 +18,8 @@
     </div>
 
     <div class="btns">
-      <button class="negative" @click="back">返回</button>
-      <button class="primary" @click="goNext">最后一页</button>
+      <button class="negative" @click="back">上一页</button>
+      <button class="primary" @click="goNext">提交</button>
     </div>
   </div>
 </template>
@@ -59,14 +59,14 @@ export default {
 
 <style lang="scss" scoped>
 .question-page-next {
-  height: calc(100vh - 50px);
-  display: flex;
-  flex-direction: column;
+  // height: calc(100vh - 50px);
+  // display: flex;
+  // flex-direction: column;
   padding: 10px;
   // justify-content: space-between;
   .content {
-    flex: 1;
-    overflow: auto;
+    // flex: 1;
+    // overflow: auto;
   }
   .btns {
     height: 40px;

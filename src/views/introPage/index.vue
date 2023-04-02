@@ -45,22 +45,25 @@ export default {
 
 <style lang="scss" scoped>
 .intro-page {
-  height: calc(100vh - 50px);
-  display: flex;
-  flex-direction: column;
+  // height: calc(100vh - 50px);
+  // display: flex;
+  // flex-direction: column;
   padding: 10px;
   // justify-content: space-between;
   .content {
-    flex: 1;
+    // flex: 1;
+    // min-height: calc(100vh - 36px);
   }
   .btns {
     height: 36px;
     button {
+      margin-top: 10px;
       height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
       border: none;
+      border-radius: 2px;
       color: #fff;
       &.only {
         width: 100%;
