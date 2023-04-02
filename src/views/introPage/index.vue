@@ -37,7 +37,7 @@ export default {
   },
   methods:{
     toQuestion(){
-      this.$router.push({name: 'questionNaire'})
+      this.$router.push({name: 'questionNaire', query: {id: this.$route.query.id}})
     }
   }
 }
@@ -45,15 +45,7 @@ export default {
 
 <style lang="scss" scoped>
 .intro-page {
-  // height: calc(100vh - 50px);
-  // display: flex;
-  // flex-direction: column;
   padding: 10px;
-  // justify-content: space-between;
-  .content {
-    // flex: 1;
-    // min-height: calc(100vh - 36px);
-  }
   .btns {
     height: 36px;
     button {

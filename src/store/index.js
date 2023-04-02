@@ -7,7 +7,8 @@ export const store = new Vuex.Store({
   state: {
     id: '',
     toolName: '',
-    questions: []
+    questions: [],
+    flag: false
   },
   mutations:{
     Set_ID(state, val){
@@ -18,11 +19,14 @@ export const store = new Vuex.Store({
     },
     Set_Questions(state, val){
       state.questions = val
+    },
+    Set_Flag(state, val){
+      state.flag = val
     }
   },
   actions:{
-    async getTool({commit}, id){
-      const res = await tool_get({id})
+    async getTool({commit, state}){
+      const res = await tool_get({id: state.id})
       commit('Set_Tool_Name', res.data.toolName)
 
       const questions = res.data.question.map((item) => {
@@ -32,6 +36,7 @@ export const store = new Vuex.Store({
           futureScore: [0, 0, 0, 0],
          }
       })
+      commit('Set_Flag', true)
       commit('Set_Questions', questions)
     }
   },
@@ -51,6 +56,9 @@ export const store = new Vuex.Store({
     },
     toolName(state){
       return state.toolName
+    },
+    toolFlag(state){
+      return state.flag
     }
   }
 })

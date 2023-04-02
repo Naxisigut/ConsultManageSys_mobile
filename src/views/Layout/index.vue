@@ -13,8 +13,18 @@
 // import {tool_get} from '@/api/index.js';
 export default {
   name: 'layout-wrapper',
+  watch:{
+    $route:{
+      handler(){
+        if(!this.toolFlag){
+          this.getTool()
+        }
+      },
+      immediate: true
+    }
+  },
   mounted(){
-    this.getTool()
+    // this.getTool()
   },
   data(){
     return {
@@ -23,7 +33,11 @@ export default {
   computed:{
     toolName(){
       return this.$store.getters.toolName
+    },
+    toolFlag(){
+      return this.$store.getters.toolFlag
     }
+
   },
   methods:{
     async getTool(){

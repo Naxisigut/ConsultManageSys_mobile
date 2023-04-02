@@ -10,7 +10,7 @@
         <div class="question-title">{{ q.title }}</div>
         <div class="question-select" v-for="a, index in q.answer" :key="index">
           <div class="text">{{ a }}</div>
-          <input type="number" v-model="q.nowScore[index]">
+          <input type="number" @focus="checkZero(i, index)" @blur="check_100(i, index)" v-model="q.nowScore[index]">
         </div>
       </div>
     </div>
@@ -25,7 +25,7 @@
 <script>
 import {tool_get} from '@/api/index.js';
 export default {
-  name: 'intro-page',
+  name: 'question-page',
   mounted(){
     // this.getTool()
   },
@@ -40,6 +40,34 @@ export default {
     }
   },
   methods:{
+    // 输入框聚焦时判断是否为0
+    checkZero(i, index){
+      const question = this.questions[i]
+      const answer = question.nowScore[index]
+      if(answer == 0){
+        this.$set(this.questions[i].nowScore, index, '')  
+      }
+    },
+    // 输入框失焦时判断本题总分
+    check_100(i, index){
+      const question = this.questions[i]
+      const answer = question.nowScore[index]
+      // 若没填，则本项置为0
+      if(answer === ''){
+        this.$set(this.questions[i].nowScore, index, 0)  
+      }
+
+      // 仅在每题最后一项失焦时判断
+      if(index !== 3 || this.calQuestinoTotal(question.nowScore) === 100)return
+      this.$toast({
+        message: '四项之和应为100',
+        duration: 1000
+      })
+    },
+    // 计算数组所有元素之和
+    calQuestinoTotal(arr){
+      return arr.reduce((curr, num)=>curr + Number(num), 0)
+    },
     toQuestion(){
       this.$router.push({name: 'questionNaire'})
     },
@@ -54,7 +82,7 @@ export default {
       this.$router.go(-1)
     },
     goNext(){
-      this.$router.push({name: 'questionNaireNext'})
+      this.$router.push({name: 'questionNaireNext', query: {id: this.$route.query.id}})
     }
   }
 }
@@ -62,15 +90,7 @@ export default {
 
 <style lang="scss" scoped>
 .question-page {
-  // height: calc(100vh - 50px);
-  // display: flex;
-  // flex-direction: column;
   padding: 10px;
-  // justify-content: space-between;
-  .content {
-    // flex: 1;
-    // overflow: auto;
-  }
   .btns {
     height: 40px;
     display: flex;
