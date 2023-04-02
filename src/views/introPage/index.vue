@@ -81,9 +81,9 @@ export default {
     .title {
       font-weight: 650;
       font-style: normal;
-      font-size: 14px;
+      font-size: 16px;
       color: #1b91fe;
-      line-height: 30px;
+      line-height: 36px;
     }
     .text {
       background-color: #fff;

@@ -48,6 +48,7 @@ export default {
       this.$router.go(-1)
     },
     async goNext(){
+      // this.$router.push({name: 'over'})
       const res =await result_post(this.$store.getters.params)
       if(res.success){
         this.$router.push({name: 'over'})
@@ -74,7 +75,7 @@ export default {
     button {
       border-radius: 2px;
       flex: 1;
-      font-size: 13px;
+      font-size: 14px;
       height: 100%;
       display: flex;
       align-items: center;
@@ -97,9 +98,9 @@ export default {
     .title {
       font-weight: 650;
       font-style: normal;
-      font-size: 14px;
+      font-size: 16px;
       color: #1b91fe;
-      line-height: 30px;
+      line-height: 36px;
     }
     .text {
       background-color: #fff;
@@ -115,7 +116,7 @@ export default {
     padding: 10px;
     border-radius: 5pxx;
     &-title {
-      font-size: 14px;
+      font-size: 16px;
       color: #1b91fe;
     }
   }
@@ -126,7 +127,7 @@ export default {
       padding: 0 10px;
       color: #fff;
       line-height: 40px;
-      font-size: 14px;
+      font-size: 16px;
       background: rgba(194, 128, 255, 1);
     }
     &-select {
@@ -141,7 +142,7 @@ export default {
       .text {
         padding: 5px 10px;
         flex: 1;
-        line-height: 16px;
+        line-height: 20px;
       }
     }
   }
