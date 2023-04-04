@@ -61,10 +61,13 @@ export default {
         width: 100%;
       }
       &.primary {
-        background-color: rgba(245, 154, 35, 1);
+        background-color: #1b91fe;
+        // background-color: rgba(245, 154, 35, 1);
       }
       &.cancel {
-        background-color: rgba(215, 215, 215, 1);
+        border: 1px solid #1b91fe;
+        color: #7f7f7f;
+        background-color: #fff;
       }
     }
   }

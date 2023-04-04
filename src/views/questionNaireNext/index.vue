@@ -11,7 +11,13 @@
           <div class="question-title">{{ q.title }}</div>
           <div class="question-select" v-for="a, index in q.answer" :key="index">
             <div class="text">{{ a }}</div>
-            <input @focus="checkZero(i, index)" @blur="check_100(i, index)" type="number" v-model="q.futureScore[index]">
+            <input 
+              type="number" 
+              :class="{err: !q.valiRes}"
+              v-model="q.futureScore[index]"
+              @focus="checkZero(i, index)" 
+              @blur="check_100(i, index)" 
+            />
           </div>
         </div>
       <!-- </template> -->
@@ -54,16 +60,31 @@ export default {
       const question = this.questions[i]
       const answer = question.futureScore[index]
       // 若没填，则本项置为0
-      if(answer === ''){
+      if(answer === '' || Number(answer) < 0){
         this.$set(this.questions[i].futureScore, index, 0)  
       }
-
-      // 仅在每题最后一项失焦时判断
-      if(index !== 3 || this.calQuestinoTotal(question.futureScore) === 100)return
-      this.$toast({
-        message: '四项之和应为100',
-        duration: 1000
-      })
+      if(Number(answer) > 100){
+        this.$set(this.questions[i].futureScore, index, 100)  
+      }
+      const sum = this.calQuestinoTotal(question.futureScore)
+      if(sum === 100){
+        question.valiRes = true
+      }
+      // if(sum > 100){
+      //   question.valiRes = false
+      //   this.$toast({
+      //     message: '四项之和必须等于100',
+      //     duration: 3000
+      //   })
+      // }
+      // 在每题最后一项失焦时判断
+      if(index === 3 && sum !== 100){
+        question.valiRes = false
+        this.$toast({
+          message: '四项之和必须等于100',
+          duration: 3000
+        })
+      }
     },
     // 计算数组所有元素之和
     calQuestinoTotal(arr){
@@ -103,10 +124,12 @@ export default {
       border: none;
       color: #fff;
       &.negative {
-        background-color: rgba(215, 215, 215, 1);
+        border: 1px solid #1b91fe;
+        color: #1b91fe;
+        background-color: #fff;
       }
       &.primary {
-        background-color: rgba(245, 154, 35, 1);
+        background-color: #1b91fe;
       }
       & + button {
         margin-left: 20px;
@@ -142,6 +165,9 @@ export default {
         background: #f2f2f27f;
         border: none;
         text-align: center;
+        &.err {
+          color: red;
+        }
       }
       .text {
         padding: 5px 10px;

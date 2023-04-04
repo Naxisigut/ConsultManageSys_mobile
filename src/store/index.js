@@ -34,6 +34,7 @@ export const store = new Vuex.Store({
           ...item, 
           nowScore: [0, 0, 0, 0],
           futureScore: [0, 0, 0, 0],
+          valiRes: true
          }
       })
       commit('Set_Flag', true)
